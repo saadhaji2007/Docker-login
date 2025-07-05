@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <h1>Hi User, Welcome to our App!</h1>
+  <p>You can sign up to the platform to access all important notifications.</p>
+
+  <form action="/addUsers" method="POST" target="_blank" id="signupForm">
+    <div class="field">
+      <label for="email">Email:</label>
+      <input type="text" placeholder="johndoe@email.com" name="email" />
+    </div>
+
+    <div class="field">
+      <label for="username">Username:</label>
+      <input type="text" placeholder="John Doe" name="username" />
+    </div>
+
+    <div class="field">
+      <label for="password">Password:</label>
+      <input type="password" placeholder="password" name="password" />
+    </div>
+
+    <button id="formBtn" >Sign up</button>
+  </form>
+
+  <script>
+    function resetForm() {
+      let myform = document.getElementById("signupForm");
+      myform.reset();
+      return false;
+    }
+  </script>
+
+</body>
+</html>
+
