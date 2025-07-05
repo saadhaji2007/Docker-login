@@ -1,6 +1,3 @@
-### 📄 `README.md`
-
-```markdown
 # 🐳 Docker Login App with Node.js & MongoDB
 
 This is a simple login app built using **Node.js, Express, and MongoDB**, fully **Dockerized** with support for Mongo Express UI. The goal of this project was to learn and implement core Docker concepts by containerizing a full-stack application.
@@ -53,6 +50,7 @@ Through this project, I explored and successfully implemented:
 ## 🚀 Getting Started
 
 ### 📁 Folder Structure
+
 ```
 
 nodeapp/
