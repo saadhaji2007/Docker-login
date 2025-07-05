@@ -1,0 +1,265 @@
+Microsoft Windows [Version 10.0.26100.4351]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\hajis>docker pull hello-world:nanoserver-ltsc2025
+Error response from daemon: no matching manifest for linux/amd64 in the manifest list entries: no match for platform in manifest: not found
+
+C:\Users\hajis>docker pull hello-world
+Using default tag: latest
+latest: Pulling from library/hello-world
+e6590344b1a5: Pull complete
+Digest: sha256:940c619fbd418f9b2b1b63e25d8861f9cc1b46e3fc8b018ccfe8b78f19b8cc4f
+Status: Downloaded newer image for hello-world:latest
+docker.io/library/hello-world:latest
+
+C:\Users\hajis>docker images
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+hello-world   latest    940c619fbd41   5 months ago   20.4kB
+
+C:\Users\hajis>docker run hello-world
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+
+C:\Users\hajis>docker ps -a
+CONTAINER ID   IMAGE         COMMAND    CREATED              STATUS PORTS     NAMES
+5b8551b37065   hello-world   "/hello"   About a minute ago   Exited (0) About a minute ago           strange_hermann
+
+C:\Users\hajis>docker pull ubuntu
+Using default tag: latest
+latest: Pulling from library/ubuntu
+b08e2ff4391e: Pull complete
+Digest: sha256:440dcf6a5640b2ae5c77724e68787a906afb8ddee98bf86db94eea8528c2c076
+Status: Downloaded newer image for ubuntu:latest
+docker.io/library/ubuntu:latest
+
+C:\Users\hajis>docker run -it ubuntu
+root@956e88835f22:/# exit
+exit
+
+C:\Users\hajis>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\hajis>docker start @956e88835f22
+Error response from daemon: No such container: @956e88835f22
+Error: failed to start containers: @956e88835f22
+
+C:\Users\hajis>docker start 956e88835f22
+956e88835f22
+
+C:\Users\hajis>docker ps
+CONTAINER ID   IMAGE     COMMAND       CREATED         STATUS         PORTS     NAMES
+956e88835f22   ubuntu    "/bin/bash"   3 minutes ago   Up 6 seconds             frosty_payne
+
+C:\Users\hajis>docker stop 956e88835f22
+956e88835f22
+
+C:\Users\hajis>docker pull mysql:8.0
+8.0: Pulling from library/mysql
+3d2798b2072a: Pull complete
+808046425533: Pull complete
+f8070e4772c5: Pull complete
+79935e3fc39a: Pull complete
+36001d754a06: Pull complete
+5d26a4e5137d: Pull complete
+77e7cef7decc: Pull complete
+e8496612335a: Pull complete
+5ce1d8b94336: Pull complete
+8a94b59cf5d8: Pull complete
+314d9502df6c: Pull complete
+Digest: sha256:4445b2668d41143cb50e471ee207f8822006249b6859b24f7e12479684def5d9
+Status: Downloaded newer image for mysql:8.0
+docker.io/library/mysql:8.0
+
+C:\Users\hajis>docker images
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+ubuntu        latest    440dcf6a5640   2 weeks ago    117MB
+mysql         8.0       4445b2668d41   2 months ago   1.06GB
+hello-world   latest    940c619fbd41   5 months ago   20.4kB
+
+C:\Users\hajis>docker pull mysql
+Using default tag: latest
+latest: Pulling from library/mysql
+610c16d564ee: Pull complete
+9db7a8f5c310: Pull complete
+56483034e3f1: Pull complete
+f4b2a1d21561: Pull complete
+4d45e5094a07: Pull complete
+515701765b17: Pull complete
+3b536f25676c: Pull complete
+c55f07fe1b6e: Pull complete
+e6048afa6840: Pull complete
+Digest: sha256:f1049ce35b3986b84c08184de43a0b2109ae037a4a10a23ecf373a893daeadf7
+Status: Downloaded newer image for mysql:latest
+docker.io/library/mysql:latest
+
+C:\Users\hajis>docker images
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+ubuntu        latest    440dcf6a5640   2 weeks ago    117MB
+mysql         latest    f1049ce35b39   2 months ago   1.17GB
+mysql         8.0       4445b2668d41   2 months ago   1.06GB
+hello-world   latest    940c619fbd41   5 months ago   20.4kB
+
+C:\Users\hajis>docker rmi 440dcf6a5640
+Error response from daemon: conflict: unable to delete 440dcf6a5640 (must be forced) - image is being used by stopped container 956e88835f22
+
+C:\Users\hajis>docker ps -a
+CONTAINER ID   IMAGE         COMMAND       CREATED          STATUS                        PORTS     NAMES
+956e88835f22   ubuntu        "/bin/bash"   15 minutes ago   Exited (137) 10 minutes ago        frosty_payne
+5b8551b37065   hello-world   "/hello"      20 minutes ago   Exited (0) 20 minutes ago        strange_hermann
+
+C:\Users\hajis>docker rm 956e88835f22
+956e88835f22
+
+C:\Users\hajis>docker rm 5b8551b37065
+5b8551b37065
+
+C:\Users\hajis>dockerps -a
+'dockerps' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\hajis>docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\hajis>docker rmi 440dcf6a5640
+Untagged: ubuntu:latest
+Deleted: sha256:440dcf6a5640b2ae5c77724e68787a906afb8ddee98bf86db94eea8528c2c076
+
+C:\Users\hajis>docker rmi 940c619fbd41
+Untagged: hello-world:latest
+Deleted: sha256:940c619fbd418f9b2b1b63e25d8861f9cc1b46e3fc8b018ccfe8b78f19b8cc4f
+
+C:\Users\hajis>docker images
+REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
+mysql        latest    f1049ce35b39   2 months ago   1.17GB
+mysql        8.0       4445b2668d41   2 months ago   1.06GB
+
+C:\Users\hajis>docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\hajis>run -d mysql
+'run' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\hajis>docker run -d mysql
+9d304d0bf332c396819c6ced0fa4838c2d31bba13b29b63bd13de27e31040a26
+
+C:\Users\hajis>docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS PORTS     NAMES
+9d304d0bf332   mysql     "docker-entrypoint.s…"   6 seconds ago   Exited (1) 5 seconds ago           eager_villani
+
+C:\Users\hajis>docker run --name mysql-older -d mysql:8.0
+4a0f067e66f8a05f1c8402710f05a3f3aa13c44543b1a9a18bb87b9afd50ced1
+
+C:\Users\hajis>docker run -d mysql-8.0
+Unable to find image 'mysql-8.0:latest' locally
+docker: Error response from daemon: pull access denied for mysql-8.0, repository does not exist or may require 'docker login'
+
+Run 'docker run --help' for more information
+
+C:\Users\hajis>docker ps -a
+CONTAINER ID   IMAGE       COMMAND                  CREATED         STATUS   PORTS     NAMES
+4a0f067e66f8   mysql:8.0   "docker-entrypoint.s…"   3 minutes ago   Exited (1) 3 minutes ago             mysql-older
+9d304d0bf332   mysql       "docker-entrypoint.s…"   4 minutes ago   Exited (1) 4 minutes ago             eager_villani
+
+C:\Users\hajis>docker rm 4a0f067e66f8
+4a0f067e66f8
+
+C:\Users\hajis>docker rm 9d304d0bf332
+9d304d0bf332
+
+C:\Users\hajis>docker run -d mysql-latest -e MYSQL_ROOT_PASSWORD=my-secret mysql
+Unable to find image 'mysql-latest:latest' locally
+docker: Error response from daemon: pull access denied for mysql-latest, repository does not exist or may require 'docker login'
+
+Run 'docker run --help' for more information
+
+C:\Users\hajis>docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\hajis>docker pull mysql
+Using default tag: latest
+latest: Pulling from library/mysql
+Digest: sha256:f1049ce35b3986b84c08184de43a0b2109ae037a4a10a23ecf373a893daeadf7
+Status: Image is up to date for mysql:latest
+docker.io/library/mysql:latest
+
+C:\Users\hajis>docker pull mysql8.0
+Using default tag: latest
+Error response from daemon: pull access denied for mysql8.0, repository does not exist or may require 'docker login'
+
+C:\Users\hajis>docker pull mysql:8.0
+8.0: Pulling from library/mysql
+Digest: sha256:4445b2668d41143cb50e471ee207f8822006249b6859b24f7e12479684def5d9
+Status: Image is up to date for mysql:8.0
+docker.io/library/mysql:8.0
+
+C:\Users\hajis>docker images
+REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
+mysql        latest    f1049ce35b39   2 months ago   1.17GB
+mysql        8.0       4445b2668d41   2 months ago   1.06GB
+
+C:\Users\hajis>docker rm f1049ce35b39
+Error response from daemon: No such container: f1049ce35b39
+
+C:\Users\hajis>docker ps-a
+docker: unknown command: docker ps-a
+
+Run 'docker --help' for more information
+
+C:\Users\hajis>docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\hajis>docker images
+REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
+mysql        latest    f1049ce35b39   2 months ago   1.17GB
+mysql        8.0       4445b2668d41   2 months ago   1.06GB
+
+C:\Users\hajis>run -d --name mysql-latest -e MYSQL_ROOT_PASSWORD=secret mysql
+'run' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\hajis>docker run -d --name mysql-latest -e MYSQL_ROOT_PASSWORD=secret mysql
+49519784b9a11bf0878e7eacead8b2fdc5dafa1895de9799889e752dbe3bfd0d
+
+C:\Users\hajis>docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS             NAMES
+49519784b9a1   mysql     "docker-entrypoint.s…"   15 seconds ago   Up 15 seconds   3306/tcp, 33060/tcp   mysql-latest
+
+C:\Users\hajis>docker run -d --name mysql-older -e MYSQL_ROOT_PASSWORD=secret mysql:8.0
+90125bb48afdab8c8030871667ce33a9bc819beef8fdfb699c7376fb0a061610
+
+C:\Users\hajis>docker ps
+CONTAINER ID   IMAGE       COMMAND                  CREATED              STATUS          PORTS                 NAMES
+90125bb48afd   mysql:8.0   "docker-entrypoint.s…"   8 seconds ago        Up 7 seconds    3306/tcp, 33060/tcp   mysql-older
+49519784b9a1   mysql       "docker-entrypoint.s…"   About a minute ago   Up 59 seconds   3306/tcp, 33060/tcp   mysql-latest
+
+C:\Users\hajis>docker stop sql-latest
+Error response from daemon: No such container: sql-latest
+
+C:\Users\hajis>docker stop mysql-latest
+mysql-latest
+
+C:\Users\hajis>docker rm mysql-latest
+mysql-latest
+
+C:\Users\hajis>

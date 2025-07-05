@@ -1,0 +1,92 @@
+
+C:\Users\hajis>docker run -d --name mysql-latest -p8080:3306 -e MYSQL_ROOT_PASSWORD=secret mysql
+4ec0ee5ef9ae1119c1f32ed9ec4dd81bdaa472e913d5e6e9cc1c2ebdb143bebe
+docker: Error response from daemon: ports are not available: exposing port TCP 0.0.0.0:8080-> 127.0.0.1:0: listen tcp 0.0.0.0:8080: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+
+Run 'docker run --help' for more information
+
+C:\Users\hajis>docker run -d --name mysql-latest -p8081:3306 -e MYSQL_ROOT_PASSWORD=secret mysql
+docker: Error response from daemon: Conflict. The container name "/mysql-latest" is alreadyin use by container "4ec0ee5ef9ae1119c1f32ed9ec4dd81bdaa472e913d5e6e9cc1c2ebdb143bebe". Youhave to remove (or rename) that container to be able to reuse that name.
+
+Run 'docker run --help' for more information
+
+C:\Users\hajis>docker run -d --name mysql-latest-v2 -p8081:3306 -e MYSQL_ROOT_PASSWORD=secret mysql
+3e0cb8ab195f78e18e6ed07c53818a480514514aaa2c7f2a70dde655f35b90bd
+
+C:\Users\hajis>docker ps
+CONTAINER ID   IMAGE       COMMAND                  CREATED          STATUS          PORTS                                       NAMES
+3e0cb8ab195f   mysql       "docker-entrypoint.s…"   22 seconds ago   Up 20 seconds   0.0.0.0:8081->3306/tcp, [::]:8081->3306/tcp   mysql-latest-v2
+90125bb48afd   mysql:8.0   "docker-entrypoint.s…"   14 minutes ago   Up 14 minutes   3306/tcp, 33060/tcp                           mysql-older
+
+C:\Users\hajis>docker logs 3e0cb8ab195f
+2025-07-05 00:26:06+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 9.3.0-1.el9 started.
+2025-07-05 00:26:07+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+2025-07-05 00:26:07+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 9.3.0-1.el9 started.
+2025-07-05 00:26:07+00:00 [Note] [Entrypoint]: Initializing database files
+2025-07-05T00:26:07.308423Z 0 [System] [MY-015017] [Server] MySQL Server Initialization - start.
+2025-07-05T00:26:07.310604Z 0 [System] [MY-013169] [Server] /usr/sbin/mysqld (mysqld 9.3.0)initializing of server in progress as process 80
+2025-07-05T00:26:07.320069Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2025-07-05T00:26:07.824748Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2025-07-05T00:26:09.128099Z 6 [Warning] [MY-010453] [Server] root@localhost is created withan empty password ! Please consider switching off the --initialize-insecure option.
+2025-07-05T00:26:11.793943Z 0 [System] [MY-015018] [Server] MySQL Server Initialization - end.
+2025-07-05 00:26:11+00:00 [Note] [Entrypoint]: Database files initialized
+2025-07-05 00:26:11+00:00 [Note] [Entrypoint]: Starting temporary server
+2025-07-05T00:26:11.877411Z 0 [System] [MY-015015] [Server] MySQL Server - start.
+2025-07-05T00:26:12.221121Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 9.3.0)starting as process 121
+2025-07-05T00:26:12.249647Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2025-07-05T00:26:12.855943Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2025-07-05T00:26:13.290692Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2025-07-05T00:26:13.290739Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2025-07-05T00:26:13.294479Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2025-07-05T00:26:13.317233Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '9.3.0'  socket: '/var/run/mysqld/mysqld.sock'  port: 0  MySQL Community Server - GPL.
+2025-07-05T00:26:13.317646Z 0 [System] [MY-011323] [Server] X Plugin ready for connections.Socket: /var/run/mysqld/mysqlx.sock
+2025-07-05 00:26:13+00:00 [Note] [Entrypoint]: Temporary server started.
+'/var/lib/mysql/mysql.sock' -> '/var/run/mysqld/mysqld.sock'
+Warning: Unable to load '/usr/share/zoneinfo/iso3166.tab' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/leap-seconds.list' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/leapseconds' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/tzdata.zi' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/zone.tab' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/zone1970.tab' as time zone. Skipping it.
+
+2025-07-05 00:26:16+00:00 [Note] [Entrypoint]: Stopping temporary server
+2025-07-05T00:26:16.245122Z 11 [System] [MY-013172] [Server] Received SHUTDOWN from user root. Shutting down mysqld (Version: 9.3.0).
+2025-07-05T00:26:17.661609Z 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 9.3.0)  MySQL Community Server - GPL.
+2025-07-05T00:26:17.661674Z 0 [System] [MY-015016] [Server] MySQL Server - end.
+2025-07-05 00:26:18+00:00 [Note] [Entrypoint]: Temporary server stopped
+
+2025-07-05 00:26:18+00:00 [Note] [Entrypoint]: MySQL init process done. Ready for start up.
+
+2025-07-05T00:26:18.316277Z 0 [System] [MY-015015] [Server] MySQL Server - start.
+2025-07-05T00:26:18.680247Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 9.3.0)starting as process 1
+2025-07-05T00:26:18.698838Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2025-07-05T00:26:19.183854Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2025-07-05T00:26:19.590926Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2025-07-05T00:26:19.591045Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2025-07-05T00:26:19.600681Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2025-07-05T00:26:19.650456Z 0 [System] [MY-011323] [Server] X Plugin ready for connections.Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+2025-07-05T00:26:19.650828Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '9.3.0'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+
+C:\Users\hajis>docker ps
+CONTAINER ID   IMAGE       COMMAND                  CREATED          STATUS          PORTS                                       NAMES
+3e0cb8ab195f   mysql       "docker-entrypoint.s…"   3 minutes ago    Up 3 minutes    0.0.0.0:8081->3306/tcp, [::]:8081->3306/tcp   mysql-latest-v2
+90125bb48afd   mysql:8.0   "docker-entrypoint.s…"   17 minutes ago   Up 17 minutes   3306/tcp, 33060/tcp                           mysql-older
+
+C:\Users\hajis>docker exec -it mysql-latest /bin/bash
+Error response from daemon: container 4ec0ee5ef9ae1119c1f32ed9ec4dd81bdaa472e913d5e6e9cc1c2ebdb143bebe is not running
+
+C:\Users\hajis>docker exec -it mysql-latest-v2 /bin/bash
+bash-5.1# env
+MYSQL_MAJOR=innovation
+HOSTNAME=3e0cb8ab195f
+PWD=/
+MYSQL_ROOT_PASSWORD=secret
+HOME=/root
+MYSQL_VERSION=9.3.0-1.el9
+GOSU_VERSION=1.17
+TERM=xterm
+SHLVL=1
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+MYSQL_SHELL_VERSION=9.3.0-1.el9
+_=/usr/bin/env
+bash-5.1# clear
